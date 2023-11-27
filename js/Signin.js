@@ -66,7 +66,8 @@ $("#google").click(function (e) {
         email = user.email;
         photoUrl = user.photoURL;
         emailVerified = user.emailVerified;
-        console.log(name, email, emailVerified);
+        console.log(name, email, emailVerified); 
+        window.location.href = "Surveyresult.html";
       }
     })
     .catch((error) => {
