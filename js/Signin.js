@@ -1,13 +1,12 @@
-var firebaseConfig = {
-  apiKey: 'AIzaSyAzcwgZuLA7dO9g4sQhXQVTUgCo0M8m2qM',
-  authDomain: 'grocerylist-91956.firebaseapp.com',
-  databaseURL: 'https://grocerylist-91956.firebaseio.com',
-  projectId: 'grocerylist-91956',
-  storageBucket: 'grocerylist-91956.appspot.com',
-  messagingSenderId: '813812426276',
-  appId: '1:813812426276:web:93e5897af12892ff78dab1',
-  measurementId: 'G-VZ83BTR72T',
-};
+const firebaseConfig = {
+  apiKey: "AIzaSyDZIAVnBvB-GHlaDDO2GbOFjQhVvleb344",
+  authDomain: "database2023test.firebaseapp.com",
+  projectId: "database2023test",
+  storageBucket: "database2023test.appspot.com",
+  messagingSenderId: "352598568614",
+  appId: "1:352598568614:web:b1acd2e65514f8050f8e67",
+  measurementId: "G-6EF9ZJX352"
+}; 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
@@ -34,7 +33,7 @@ $('#Login').submit(function (e) {
         email = user.email;
         photoUrl = user.photoURL;
         emailVerified = user.emailVerified;
-        console.log(name + email + emailVerified);
+        console.log(name, email, emailVerified);
       }
     })
     .catch((error) => {
@@ -45,3 +44,40 @@ $('#Login').submit(function (e) {
     });
 });
 
+// add  a google login choice here 
+$("#google").click(function (e) {
+  e.preventDefault();
+  var provider = new firebase.auth.GoogleAuthProvider();
+  firebase
+    .auth()
+    .signInWithPopup(provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      //var token = result.credential.accessToken;
+      // The signed-in user info.
+      //var user = result.user;
+      // ...
+      console.log('login in');
+      let user = firebase.auth().currentUser;
+
+      //user.updateProfile({ displayName: "Not sure" });
+      if (user != null) {
+        name = user.displayName;
+        email = user.email;
+        photoUrl = user.photoURL;
+        emailVerified = user.emailVerified;
+        console.log(name, email, emailVerified);
+      }
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      //var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(errorMessage);
+      // The email of the user's account used.
+      //var email = error.email;
+      // The firebase.auth.AuthCredential type that was used.
+      //var credential = error.credential;
+      // ...
+    });
+});
