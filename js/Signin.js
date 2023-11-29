@@ -1,8 +1,8 @@
 const firebaseConfig = {
   apiKey: "AIzaSyDZIAVnBvB-GHlaDDO2GbOFjQhVvleb344",
-  authDomain: "database2023test.firebaseapp.com",
-  projectId: "database2023test",
-  storageBucket: "database2023test.appspot.com",
+  authDomain: "database-hayden.firebaseapp.com",
+  projectId: "database-hayden",
+  storageBucket: "database-hayden.appspot.com",
   messagingSenderId: "352598568614",
   appId: "1:352598568614:web:b1acd2e65514f8050f8e67",
   measurementId: "G-6EF9ZJX352"
@@ -25,6 +25,8 @@ $('#Login').submit(function (e) {
       // Signed in
       // ...
       console.log('login in');
+      var user = result.user;
+      console.log("sign in through google", user);
       let user = firebase.auth().currentUser;
 
       //user.updateProfile({ displayName: "Not sure" });
@@ -45,3 +47,9 @@ $('#Login').submit(function (e) {
 });
 
 // add  a google login choice here 
+$('#google').click(function(){
+  var provider = new firebase.auth.GoogleAutProvider();
+
+  firebase.auth().signInWithPopup(provider).then();
+
+});
